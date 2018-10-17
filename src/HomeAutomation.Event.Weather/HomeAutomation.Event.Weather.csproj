@@ -5,8 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\HomeAutomation.Event.Model\HomeAutomation.Event.Model.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="NodaTime" Version="2.4.2" />
-      <PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
     </ItemGroup>
 
 </Project>

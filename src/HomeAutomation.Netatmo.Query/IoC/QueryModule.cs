@@ -1,5 +1,7 @@
 using Autofac;
 using HomeAutomation.Netatmo.Query.Services;
+using HomeAutomation.Referential.Configuration;
+using HomeAutomation.Referential.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Netatmo;
 using NodaTime;
@@ -10,6 +12,7 @@ namespace HomeAutomation.Netatmo.Query.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<EventModule>();
             builder
                 .Register(c =>
                 {
@@ -22,14 +25,13 @@ namespace HomeAutomation.Netatmo.Query.IoC
                 })
                 .As<IClient>();
 
-            builder.Register(c =>
-            {
-                var configuration = c.Resolve<IConfiguration>().GetSection("Netatmo");
-                return new NetatmoService(
-                    c.Resolve<IClient>(),
-                    configuration.GetSection("Username").Value,
-                    configuration.GetSection("Password").Value);
-            }).As<INetatmoService>();
+            builder
+                .Register(c => new ConfigurationReferential(
+                    c.Resolve<IConfiguration>().GetSection("Referential").Get<Referential.Configuration.Referential>(),
+                    c.Resolve<IConfiguration>().GetSection("ReferentialMapping").Get<ReferentialMapping>()))
+                .As<IReferential>();
+
+            builder.RegisterType<WeatherService>().As<IWeatherService>();
         }
     }
 }

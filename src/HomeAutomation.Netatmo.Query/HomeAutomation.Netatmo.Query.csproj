@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -7,13 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
+      <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
       <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.1" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
-      <PackageReference Include="Netatmo" Version="1.0.0" />
-      <PackageReference Include="NodaTime" Version="2.4.0" />
+      <PackageReference Include="Netatmo" Version="1.2.0" />
+      <PackageReference Include="NodaTime" Version="2.4.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HomeAutomation.Event.Infrastructure\HomeAutomation.Event.Infrastructure.csproj" />
+      <ProjectReference Include="..\HomeAutomation.Event.Weather\HomeAutomation.Event.Weather.csproj" />
+      <ProjectReference Include="..\HomeAutomation.Referential\HomeAutomation.Referential.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="appsettings.riges.json" />
     </ItemGroup>
 
 </Project>

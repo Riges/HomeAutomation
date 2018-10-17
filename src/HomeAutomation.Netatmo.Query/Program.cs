@@ -7,6 +7,8 @@ using HomeAutomation.Netatmo.Query.IoC;
 using HomeAutomation.Netatmo.Query.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Netatmo;
+using NodaTime;
 
 namespace HomeAutomation.Netatmo.Query
 {
@@ -28,13 +30,19 @@ namespace HomeAutomation.Netatmo.Query
             var containerBuilder = new ContainerBuilder();
             containerBuilder.Populate(serviceCollection);
             containerBuilder.RegisterInstance(Configuration).As<IConfiguration>();
+            containerBuilder.Register(c => SystemClock.Instance).As<IClock>();
             containerBuilder.RegisterModule<QueryModule>();
-            
+
             var container = containerBuilder.Build();
             var serviceProvider = new AutofacServiceProvider(container);
 
-            var netatmoService = serviceProvider.GetService<INetatmoService>();
-            await netatmoService.RetrieveData();
+            var app = new App(
+                serviceProvider.GetService<IClock>(),
+                serviceProvider.GetService<IClient>(),
+                serviceProvider.GetService<IWeatherService>(),
+                Configuration.GetSection("StationId").Value);
+
+            await app.Run(Configuration.GetSection("Netatmo:Username").Value, Configuration.GetSection("Netatmo:Password").Value);
         }
     }
 }
