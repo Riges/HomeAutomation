@@ -35,7 +35,7 @@ namespace HomeAutomation.Netatmo.Query.Services
 
                 if (module.Type == "NAModule1")
                 {
-                    var dashboardData = module.GetDashboardData<BaseStationDashBoardData>();
+                    var dashboardData = module.GetDashboardData<OutdoorDashBoardData>();
                     await SendTemperatureMeasureEvent(module.Id, dashboardData.TimeUtc, dashboardData.Temperature);
                 }
 
