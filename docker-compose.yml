@@ -1,6 +1,7 @@
 version: '3'
 services:
   rabbitmq:
+    container_name: home-automation-rabbitmq
     build: ./docker/rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: 'guest'
@@ -10,8 +11,20 @@ services:
       - '15672:15672'
 
   influxdb:
+    container_name: home-automation-influxdb
     image: 'influxdb:alpine'
     ports:
       - '8086:8086'
     volumes:
       - './docker/influxdb/volumes/influxdb:/var/lib/influxdb'
+
+  netatmo-query:
+    container_name: home-automation-netatmo-query
+    build:
+      context: ./src/
+      dockerfile: HomeAutomation.Netatmo.Query/Dockerfile
+    depends_on: [rabbitmq]
+    environment:
+      RabbitMQ:Username: 'guest'
+      RabbitMQ:Password: 'guest'
+      RabbitMQ:Hostname: rabbitmq

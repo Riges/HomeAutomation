@@ -24,6 +24,9 @@
 
     <ItemGroup>
       <None Remove="appsettings.riges.json" />
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
