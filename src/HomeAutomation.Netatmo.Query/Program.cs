@@ -43,6 +43,8 @@ namespace HomeAutomation.Netatmo.Query
                 Configuration.GetSection("StationId").Value);
 
             await app.Run(Configuration.GetSection("Netatmo:Username").Value, Configuration.GetSection("Netatmo:Password").Value);
+            
+            container.Dispose();
         }
     }
 }

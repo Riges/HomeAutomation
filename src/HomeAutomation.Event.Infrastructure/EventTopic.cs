@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using HomeAutomation.Event.Model;
@@ -39,16 +40,16 @@ namespace HomeAutomation.Event.Infrastructure
                 var props = channel.CreateBasicProperties();
                 props.Persistent = true;
                 props.ContentType = "application/json";
-//                props.Headers = new Dictionary<string, object>
-//                {
-//                    {"eventId", domainEvent.EventId},
-//                    {"parentEventId", domainEvent.ParentEventId},
-//                    {"createdAt", domainEvent.CreatedAt},
-//                    {"author", domainEvent.Author},
-//                    {"name", domainEvent.Name},
-//                    {"id", domainEvent.Id},
-//                    {"authorId", domainEvent.AuthorId}
-//                };
+                props.Headers = new Dictionary<string, object>
+                {
+                    {"eventId", domainEvent.EventId.ToString()},
+                    {"parentEventId", domainEvent.ParentEventId.ToString()},
+                    {"createdAt", domainEvent.CreatedAt.ToString()},
+                    {"author", domainEvent.Author.ToString()},
+                    {"name", domainEvent.Name},
+                    {"id", domainEvent.Id.ToString()},
+                    {"authorId", domainEvent.AuthorId.ToString()}
+                };
 
                 channel.BasicPublish(exchangeName, routingKey, props, bytes);
             });
