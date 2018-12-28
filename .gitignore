@@ -331,3 +331,4 @@ ASALocalRun/
 
 # Ignore custom conf
 /src/*/appsettings.*.json
+/docker/influxdb/volumes/
