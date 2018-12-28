@@ -1,0 +1,17 @@
+version: '3'
+services:
+  rabbitmq:
+    build: ./docker/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: 'guest'
+      RABBITMQ_DEFAULT_PASS: 'guest'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+  influxdb:
+    image: 'influxdb:alpine'
+    ports:
+      - '8086:8086'
+    volumes:
+      - './docker/influxdb/volumes/influxdb:/var/lib/influxdb'
