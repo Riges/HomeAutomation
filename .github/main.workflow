@@ -7,5 +7,5 @@ workflow "Docker Build" {
 
 action "Build Docker image" {
   uses = "docker://docker:stable"
-  args = "build -t homeautomation-netatmo-query -f ./src/HomeAutomation.Netatmo.Query/ ."
+  args = "build -t homeautomation-netatmo-query -f ./src/HomeAutomation.Netatmo.Query/Dockerfile  ./src/"
 }
