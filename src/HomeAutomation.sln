@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Event.Weathe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Referential", "HomeAutomation.Referential\HomeAutomation.Referential.csproj", "{DD8FE44F-CE53-4849-BFC3-3754441B06E8}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HomeAutomation.Referential.Fsharp", "HomeAutomation.Referential.Fsharp\HomeAutomation.Referential.Fsharp.fsproj", "{1ED671D3-57A6-436F-A79C-408FF933B129}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{DD8FE44F-CE53-4849-BFC3-3754441B06E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD8FE44F-CE53-4849-BFC3-3754441B06E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD8FE44F-CE53-4849-BFC3-3754441B06E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED671D3-57A6-436F-A79C-408FF933B129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED671D3-57A6-436F-A79C-408FF933B129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED671D3-57A6-436F-A79C-408FF933B129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED671D3-57A6-436F-A79C-408FF933B129}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C62BBF93-7D53-496C-81EB-5A597AF77D24} = {83DC93F0-B6A8-4943-BB7B-7AC5D4167C76}

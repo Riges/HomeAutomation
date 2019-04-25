@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
 using HomeAutomation.Event.Model;
 using HomeAutomation.Event.Weather;
+using HomeAutomation.Referential.Fsharp;
 using HomeAutomation.Referential.Infrastructure;
-using Netatmo.Models.Client.Weather.StationsData;
 using Netatmo.Models.Client.Weather.StationsData.DashboardData;
 using NodaTime;
+using Device = Netatmo.Models.Client.Weather.StationsData.Device;
 
 namespace HomeAutomation.Netatmo.Query.Services
 {
@@ -13,12 +14,14 @@ namespace HomeAutomation.Netatmo.Query.Services
         private readonly IClock clock;
         private readonly IEventTopic eventTopic;
         private readonly IReferential referential;
+        private readonly ReferentialRecord referentialFsharp;
 
-        public WeatherService(IClock clock, IEventTopic eventTopic, IReferential referential)
+        public WeatherService(IClock clock, IEventTopic eventTopic, IReferential referential, ReferentialRecord referentialFsharp)
         {
             this.clock = clock;
             this.eventTopic = eventTopic;
             this.referential = referential;
+            this.referentialFsharp = referentialFsharp;
         }
 
         public async Task SendWeatherInformations(Device station)
@@ -50,6 +53,8 @@ namespace HomeAutomation.Netatmo.Query.Services
         private async Task SendTemperatureMeasureEvent(string id, Instant measuredAtUTC, double temperature)
         {
             var device = await referential.GetDeviceByProviderId(id);
+
+            var testDevice = Referential.Fsharp.ConfigurationReferential.getDeviceByProviderId(referentialFsharp, id);
 
             await eventTopic.PublishAsync(new TemperatureMeasureEvent(
                 DomainEventAuthor.Netatmo,

@@ -19,6 +19,7 @@
     <ItemGroup>
       <ProjectReference Include="..\HomeAutomation.Event.Infrastructure\HomeAutomation.Event.Infrastructure.csproj" />
       <ProjectReference Include="..\HomeAutomation.Event.Weather\HomeAutomation.Event.Weather.csproj" />
+      <ProjectReference Include="..\HomeAutomation.Referential.Fsharp\HomeAutomation.Referential.Fsharp.fsproj" />
       <ProjectReference Include="..\HomeAutomation.Referential\HomeAutomation.Referential.csproj" />
     </ItemGroup>
 

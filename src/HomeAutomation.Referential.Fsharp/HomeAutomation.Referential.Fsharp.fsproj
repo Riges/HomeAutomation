@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <AssemblyName>HomeAutomation.Referential.Fsharp</AssemblyName>
+        <RootNamespace>HomeAutomation.Referential.Fsharp</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Referential.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include=".dockerignore" />
+    </ItemGroup>
+
+</Project>
