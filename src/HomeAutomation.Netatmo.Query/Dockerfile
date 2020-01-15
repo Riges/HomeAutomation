@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-sdk-alpine AS dotnet-build
+FROM microsoft/dotnet:2.2.104-sdk-alpine AS dotnet-build
 WORKDIR /src
 COPY HomeAutomation.sln .
 COPY HomeAutomation.Referential/HomeAutomation.Referential.csproj ./HomeAutomation.Referential/
@@ -15,7 +15,7 @@ COPY HomeAutomation.Netatmo.Query/ /HomeAutomation.Netatmo.Query/
 RUN dotnet publish /HomeAutomation.Netatmo.Query/HomeAutomation.Netatmo.Query.csproj -c Release -o /out 
 
 # build runtime image
-FROM microsoft/dotnet:2.2-runtime-alpine
+FROM microsoft/dotnet:2.2.104-sdk-alpine
 WORKDIR /app
 COPY --from=dotnet-build /out ./
 ENTRYPOINT ["dotnet", "HomeAutomation.Netatmo.Query.dll"]
